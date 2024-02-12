@@ -1,10 +1,16 @@
-import { Typography } from "@mui/material"
 import { JournalLayout } from "../layout"
+import { NothigSelectedView } from "../components/NothigSelectedView"
+import { NoteView } from "../components/NoteView"
 
 export const JournalPage = () => {
+  const haveNote = true
   return (
     <JournalLayout>
-      <Typography variant={'h1'}>JournalPage</Typography>
+      {haveNote ?
+        <NoteView/>
+        :
+        <NothigSelectedView/>
+      }
     </JournalLayout>
   )
 }
