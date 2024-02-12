@@ -13,7 +13,7 @@ export const AuthLayout = ({children, title}) => {
           <Grid item
             className="box-shadow"
             xs={3}
-            sx={{backgroundColor:'white', p: 4, borderRadius: 2}}
+            sx={{width:{ sm:450 }, backgroundColor:'white', p: 4, borderRadius: 2}}
           >
             <Typography variant="h5" sx={{mb:1}}> {title} </Typography>
             {children}
@@ -23,6 +23,6 @@ export const AuthLayout = ({children, title}) => {
 }
 
 AuthLayout.propTypes = {
-    children: PropTypes.node.isRequired,
-    title: PropTypes.string.isRequired
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired
 };
