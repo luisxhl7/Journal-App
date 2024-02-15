@@ -38,7 +38,7 @@ export const RegisterPage = () => {
 
   return (
     <AuthLayout title="Register">
-      <form onSubmit={onsubmit}>
+      <form onSubmit={onsubmit} className="animate__animated animate__fadeIn animate__faster">
         <Grid container>
           <Grid item xs={ 12 } sx={{mt: 2}}>
             <TextField
@@ -97,7 +97,7 @@ export const RegisterPage = () => {
             direction='row'
             justifyContent='end'
           >
-            <Typography>¿Ya tienes cuenta?</Typography>
+            <Typography sx={{mr: 0.5}}>¿Ya tienes cuenta? </Typography>
             <Link component={LinkRouterDom} color='inherit' to='/auth/login'>
               ingresar
             </Link>
