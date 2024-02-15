@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { login, logout } from "../store/slices/authSlice"
 import { FirebaseAuth } from "../fireBase/config"
+import { startLoadingNotes } from "../store/thunks/startLoadingNotes"
 
 export const useCheckAuth = () => {
     const { status } = useSelector( state => state.auth)
@@ -15,6 +16,7 @@ export const useCheckAuth = () => {
         }else{
             const {uid, email, displayName, photoURL} = user
             dispatch(login({uid, email, displayName, photoURL}))
+            dispatch(startLoadingNotes())
         }
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps

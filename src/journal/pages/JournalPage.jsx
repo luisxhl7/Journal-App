@@ -3,12 +3,20 @@ import { NothigSelectedView } from "../components/NothigSelectedView"
 import { NoteView } from "../components/NoteView"
 import { IconButton } from "@mui/material"
 import { AddOutlined } from "@mui/icons-material"
+import { useDispatch, useSelector } from "react-redux"
+import { startNewNote } from "../../store/thunks/startNewNote"
 
 export const JournalPage = () => {
-  const haveNote = false
+  const dispatch = useDispatch()  
+  const {isSaving, active} = useSelector( state => state.journal)
+
+  const handleAddNote = () => {
+    dispatch(startNewNote())
+  }
+
   return (
     <JournalLayout>
-      {haveNote ?
+      {!!active ? // eslint-disable-line no-extra-boolean-cast
         <NoteView/>
         :
         <NothigSelectedView/>
@@ -24,9 +32,11 @@ export const JournalPage = () => {
           bottom: 50,
 
         }}
+        disabled={isSaving}
+        onClick={handleAddNote}
       >
         <AddOutlined sx={{fontSize: 30 }}/>
-      </IconButton>
+        </IconButton>
     </JournalLayout>
   )
 }

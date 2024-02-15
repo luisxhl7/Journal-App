@@ -1,8 +1,12 @@
 import { SaveOutlined } from "@mui/icons-material"
 import { Button, Grid, TextField, Typography } from "@mui/material"
 import { ImageGalery } from "./ImageGalery"
+import { useSelector } from "react-redux"
 
 export const NoteView = () => {
+
+    const {active} = useSelector(state => state.journal)
+    console.log(active);
     return (
         <Grid container 
             className="animate__animated animate__fadeIn animate__faster"
