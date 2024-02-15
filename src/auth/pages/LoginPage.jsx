@@ -4,9 +4,9 @@ import { Link as LinkRouterDom } from "react-router-dom"
 import { AuthLayout } from "../layout/AuthLayout"
 import { useForm } from "../../hooks"
 import { useDispatch, useSelector } from "react-redux"
-import { chekingAuthentication } from "../../store/thunks"
 import { startGoogleSignIn } from "../../store/thunks/startGoogleSignIn"
 import { useMemo } from "react"
+import { startLoginWithEmailAndPassword } from "../../store/thunks/startLoginWithEmailAndPassword"
 
 export const LoginPage = () => {
   const { status } = useSelector( state => state.auth)
@@ -21,7 +21,7 @@ export const LoginPage = () => {
   
   const onsubmit = (e) => {
     e.preventDefault()
-    dispatch(chekingAuthentication(email, password))
+    dispatch(startLoginWithEmailAndPassword(email, password))
   } 
 
   const onGoogleSigIn = () => {
