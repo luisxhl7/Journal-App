@@ -1,4 +1,4 @@
-import { SaveOutlined, UploadOutlined } from "@mui/icons-material"
+import { DeleteOutline, SaveOutlined, UploadOutlined } from "@mui/icons-material"
 import { Button, Grid, IconButton, TextField, Typography } from "@mui/material"
 import { ImageGalery } from "./ImageGalery"
 import { useDispatch, useSelector } from "react-redux"
@@ -8,11 +8,14 @@ import { setActiveNote } from "../../store/slices/journalSlice"
 import { startsaveNote } from "../../store/thunks/startsaveNote"
 import Swal from "sweetalert2"
 import { startUploadingFiles } from "../../store/thunks/startUploadingFiles"
+import { starDeletingNote } from "../../store/thunks/starDeletingNote"
 
 export const NoteView = () => {
     const dispatch = useDispatch()
     const { active:note, messageSaved, isSaving } = useSelector(state => state.journal)
+
     const {body, title, date, onInputChange, formState} = useForm(note)
+    
     const dateString = useMemo(() => {
         const newDate = new Date( date )
         return newDate.toUTCString()
@@ -38,6 +41,9 @@ export const NoteView = () => {
 
     const handleSaveNote = () => {
         dispatch(startsaveNote())
+    }
+    const handleOnDelete = () => {
+        dispatch(starDeletingNote())
     }
 
     const onfileInputChange = ({target}) => {
@@ -104,6 +110,16 @@ export const NoteView = () => {
                     value={body}
                     onChange={onInputChange}
                 />
+            </Grid>
+            <Grid container justifyContent='end'>
+                <Button 
+                    sx={{mt:2}}
+                    color="error"
+                    onClick={handleOnDelete}
+                >
+                    <DeleteOutline/>
+                    Borrar
+                </Button>
             </Grid>
 
             <ImageGalery images={note?.imageUrls}/>
