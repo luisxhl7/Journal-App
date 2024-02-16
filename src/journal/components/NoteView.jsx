@@ -7,13 +7,12 @@ import { useEffect, useMemo, useRef } from "react"
 import { setActiveNote } from "../../store/slices/journalSlice"
 import { startsaveNote } from "../../store/thunks/startsaveNote"
 import Swal from "sweetalert2"
+import { startUploadingFiles } from "../../store/thunks/startUploadingFiles"
 
 export const NoteView = () => {
     const dispatch = useDispatch()
     const { active:note, messageSaved, isSaving } = useSelector(state => state.journal)
-    
     const {body, title, date, onInputChange, formState} = useForm(note)
-    
     const dateString = useMemo(() => {
         const newDate = new Date( date )
         return newDate.toUTCString()
@@ -45,8 +44,7 @@ export const NoteView = () => {
         if (target.files === 0) {
             return
         }
-
-        console.log(target.files)
+        dispatch(startUploadingFiles(target.files))
     }
     
     return (
@@ -108,7 +106,7 @@ export const NoteView = () => {
                 />
             </Grid>
 
-            <ImageGalery/>
+            <ImageGalery images={note?.imageUrls}/>
         </Grid>
     )
 }
