@@ -10,7 +10,7 @@ export const SidebarItem = ({id, title, body, date, imageUrls}) => {
     const dispatch = useDispatch()
 
     const newTitle = useMemo( () => {
-        return title.ltngth > 17 
+        return title?.length > 17 
             ? title.substring(0,17) + '...'
             :   title
     }, [title])
