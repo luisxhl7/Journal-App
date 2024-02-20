@@ -20,8 +20,8 @@ export const startNewNote = () => {
 
         newNote.id = newDoc.id
 
-        dispatch(addNewEmpyNote( newNote ))
-        dispatch( setActiveNote(newNote) )
+        dispatch( addNewEmpyNote( newNote ))
+        dispatch( setActiveNote( newNote ) )
     
     }
 }
