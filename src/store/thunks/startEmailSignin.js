@@ -6,7 +6,7 @@ export const startEmailSignIn = ({email, password, displayName}) => {
         dispatch( checkingCredentials() )
         const result = await sigInWithEmail({email, password, displayName})
 
-        console.log(result);
+        // console.log(result);
         if (!result.ok) {
             return dispatch( logout(result.errorMessage) )
         }

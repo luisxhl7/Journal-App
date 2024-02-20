@@ -35,7 +35,7 @@ export const sigInWithEmail = async({email, password, displayName}) => {
     try {
         
         const result = await createUserWithEmailAndPassword(FirebaseAuth, email, password)
-        console.log(result);
+        // console.log(result);
         const {photoURL, uid} = result.user
         
         await updateProfile( FirebaseAuth.currentUser, { displayName } )

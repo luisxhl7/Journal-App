@@ -47,7 +47,7 @@ describe('Pruebas de authSlice', () => {
     })
     test('debe de cambiar el estado a cheking', () => {
         const state = authSlice.reducer( authenticatedState, checkingCredentials())
-        console.log(state);
+
         expect( state.status ).toBe( 'checking' )
     }) 
 })

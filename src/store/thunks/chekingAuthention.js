@@ -1,8 +1,9 @@
 import { checkingCredentials } from "../slices/authSlice"
 
-export const chekingAuthentication = (email, Password) => {
+export const chekingAuthentication = () => {
     return async(dispatch) => {
-        console.log(email,Password);
+
         dispatch(checkingCredentials())
+    
     }
 }
