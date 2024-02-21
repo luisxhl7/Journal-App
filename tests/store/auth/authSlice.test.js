@@ -34,16 +34,18 @@ describe('Pruebas de authSlice', () => {
         })
     })
     test('debe de realizar el logout y mostrar mensaje de error', () => {
-        const state = authSlice.reducer( authenticatedState, logout('credenciales no son correctas'))
+        // authenticatedState // logout con argumentos 
+        const errorMessage = 'Credenciales no son correctas';
 
-        expect( state ).toEqual({
+        const state = authSlice.reducer( authenticatedState, logout({ errorMessage }) );
+        expect(state).toEqual({
             status: 'not-authenticated',
             uid: null,
             email: null,
             displayName: null,
             photoURL: null,
-            errorMessage: 'credenciales no son correctas',
-        })
+            errorMessage: errorMessage
+        });
     })
     test('debe de cambiar el estado a cheking', () => {
         const state = authSlice.reducer( authenticatedState, checkingCredentials())

@@ -1,7 +1,8 @@
 import { collection, deleteDoc, getDocs } from "firebase/firestore/lite"
-import { addNewEmpyNote, creatingNewNote, setActiveNote } from "../../../../src/store/slices/journalSlice"
-import { startNewNote } from "../../../../src/store/thunks/startNewNote"
-import { FirebaseDB } from "../../../../src/fireBase/config"
+import { addNewEmpyNote, creatingNewNote, setActiveNote } from "../../../src/store/slices/journalSlice"
+import { startNewNote } from "../../../src/store/thunks/startNewNote"
+import { FirebaseDB } from "../../../src/fireBase/config"
+
 
 describe('Pruebas en Journal Thunks', () => {
     

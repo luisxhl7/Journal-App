@@ -11,6 +11,7 @@ import { demoUser } from "../../fixtures/authFixtures"
 jest.mock('../../../src/fireBase/providers')
 
 describe('Pruebas en AuthThunks', () => {
+
     const dispatch = jest.fn()
 
     beforeEach(() => jest.clearAllMocks())
@@ -51,17 +52,17 @@ describe('Pruebas en AuthThunks', () => {
         expect( dispatch ).toHaveBeenCalledWith( login(loginData) )
     })
     test('startLoginWithEmailAndPassword debe de invocar el checkingCredentials y logout - error', async() => {
-        const LoginWithEmailAndPassword = {email: 'luis@gmail.com', password: 'luis123' }
+        const LoginWithEmailAndPassword = { email: '', password: 'luis123' }
 
-        const loginData = { ok: false, errorMessage: 'datos incorrectos'}
+        const loginData = { ok: false, errorMessage: 'datos incorrectos' }
         
         await loginWithEmailAndPassword.mockResolvedValue( loginData )
         await startLoginWithEmailAndPassword(LoginWithEmailAndPassword)(dispatch)
 
         expect( dispatch ).toHaveBeenCalledWith( checkingCredentials() )
-        expect( dispatch ).toHaveBeenCalledWith( logout(loginData.errorMessage) )
+        expect( dispatch ).toHaveBeenCalledWith( logout(loginData) )
     })
-    test('startLoginWithEmailAndPassword debe de invocar el checkingCredentials y login - exito', async() => {
+    test('createUserWithEmailAndPassword debe de invocar el checkingCredentials y login - exito', async() => {
         const createUserWithEmailAndPassword = {email: 'luis@gmail.com', password: 'luis123', displayName: 'lucho' }
 
         const loginData = { ok: true, ...demoUser}
@@ -72,7 +73,7 @@ describe('Pruebas en AuthThunks', () => {
         expect( dispatch ).toHaveBeenCalledWith( checkingCredentials() )
         expect( dispatch ).toHaveBeenCalledWith( login(loginData) )
     })
-    test('startLoginWithEmailAndPassword debe de invocar el checkingCredentials y logout - error', async() => {
+    test('createUserWithEmailAndPassword debe de invocar el checkingCredentials y logout - error', async() => {
         const createUserWithEmailAndPassword = {email: 'luis@gmail.com', password: 'luis123', displayName: 'lucho' }
 
         const loginData = { ok: false, errorMessage: 'usuario ya existente'}
@@ -81,7 +82,7 @@ describe('Pruebas en AuthThunks', () => {
         await startEmailSignIn(createUserWithEmailAndPassword)(dispatch)
 
         expect( dispatch ).toHaveBeenCalledWith( checkingCredentials() )
-        expect( dispatch ).toHaveBeenCalledWith( logout(loginData.errorMessage) )
+        expect( dispatch ).toHaveBeenCalledWith( logout(loginData) )
     })
 
     test('startLogout debe de invocar el clearNoteLogout y logout', async() => {

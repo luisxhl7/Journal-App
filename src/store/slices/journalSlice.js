@@ -66,4 +66,4 @@ export const {
     clearNoteLogout 
 } = journalSlice.actions;
 
-export default journalSlice.reducer;
+export default journalSlice;
